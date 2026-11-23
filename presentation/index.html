@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Understanding the SiC Market — From Technology to Market Dynamics</title>
+  
+  <!-- Reveal.js CDN 核心樣式 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css" id="theme">
+  
+  <!-- 自訂半導體科技研調風格主題 CSS -->
+  <style>
+    :root {
+      --bg-dark: #070d1e;
+      --bg-card: rgba(16, 28, 58, 0.75);
+      --border-card: rgba(0, 225, 217, 0.25);
+      --accent-cyan: #00e1d9;
+      --accent-blue: #3a86ff;
+      --accent-amber: #ffb703;
+      --accent-green: #38ef7d;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .reveal {
+      background: radial-gradient(circle at 50% 20%, #0d1e44 0%, #070d1e 80%);
+      font-size: 26px;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: none;
+    }
+
+    .reveal h2 {
+      font-size: 1.55em;
+      margin-bottom: 0.4em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .reveal h2::after {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 0.55em;
+      font-weight: 600;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(0, 225, 217, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 225, 217, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .badge-amber {
+      background: rgba(255, 183, 3, 0.15);
+      color: var(--accent-amber);
+      border-color: rgba(255, 183, 3, 0.35);
+    }
+
+    .badge-blue {
+      background: rgba(58, 134, 255, 0.15);
+      color: var(--accent-blue);
+      border-color: rgba(58, 134, 255, 0.35);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 15px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 18px 20px;
+      text-align: left;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .card h3 {
+      font-size: 0.9em;
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p, .card ul {
+      font-size: 0.72em;
+      line-height: 1.5;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    .card ul {
+      padding-left: 20px;
+    }
+
+    .card ul li {
+      margin-bottom: 6px;
+    }
+
+    .stat-number {
+      font-size: 1.8em;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+      margin: 6px 0;
+      font-feature-settings: "tnum";
+    }
+
+    .stat-label {
+      font-size: 0.65em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .highlight-cyan {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .highlight-amber {
+      color: var(--accent-amber);
+      font-weight: 600;
+    }
+
+    .highlight-blue {
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .source-footer {
+      position: absolute;
+      bottom: -35px;
+      left: 0;
+      width: 100%;
+      text-align: right;
+      font-size: 0.45em;
+      color: #64748b;
+      font-style: italic;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 6px;
+    }
+
+    .nav-hints {
+      position: fixed;
+      bottom: 12px;
+      left: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #94a3b8;
+      background: rgba(15, 23, 42, 0.85);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      z-index: 100;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+
+    .network-pill {
+      position: fixed;
+      top: 14px;
+      right: 18px;
+      font-size: 11px;
+      color: #38ef7d;
+      background: rgba(56, 239, 125, 0.1);
+      border: 1px solid rgba(56, 239, 125, 0.3);
+      padding: 3px 10px;
+      border-radius: 12px;
+      z-index: 100;
+      letter-spacing: 0.04em;
+    }
+
+    /* 示意圖與表格微調 */
+    .table-compare {
+      width: 100%;
+      font-size: 0.65em;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .table-compare th {
+      background: rgba(58, 134, 255, 0.2);
+      color: var(--accent-cyan);
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-card);
+    }
+
+    .table-compare td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+    }
+
+    .table-compare tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    svg.diagram {
+      width: 100%;
+      max-height: 180px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- UI 輔助標籤 -->
+  <div class="network-pill">🌐 Reveal.js CDN 模式（需連網載入樣式）</div>
+  <div class="nav-hints">[方向鍵] 翻頁 | [S] 演講者備忘稿 | [F] 全螢幕</div>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ========================================== -->
+      <!-- SLIDE 1: 封面與引言 -->
+      <!-- ========================================== -->
+      <section data-slide-id="1">
+        <span class="badge">Generative AI Course Project — LLM Wiki System</span>
+        <h1 style="font-size: 1.85em; margin: 0.2em 0 0.25em 0;">Understanding the SiC Market</h1>
+        <p style="font-size: 0.8em; color: var(--accent-cyan); margin-bottom: 18px;">
+          From Technology to Market Dynamics — 碳化矽功率半導體市場全解析
+        </p>
+
+        <!-- 運算 vs 功率半導體核心對比 -->
+        <div class="grid-2" style="margin-top: 10px;">
+          <div class="card" style="border-left: 4px solid var(--accent-blue);">
+            <h3>運算半導體（Logic / AI GPUs）</h3>
+            <p><strong>角色：智慧大腦（Brain）</strong></p>
+            <p style="margin-top: 4px;">專注於奈米製程、高速邏輯運算與微電壓控制（工作電壓 &lt; 1V）。代表：CPU、GPU、NPU。</p>
+          </div>
+          <div class="card" style="border-left: 4px solid var(--accent-cyan);">
+            <h3>功率半導體（Power Semiconductors）</h3>
+            <p><strong>角色：動力心臟與肌肉（Muscle &amp; Heart）</strong></p>
+            <p style="margin-top: 4px;">掌控千伏（kV）高壓與百安（A）強電流的高效轉換與開關。代表：電動車主驅逆變器、光電儲能系統。</p>
+          </div>
+        </div>
+
+        <!-- 簡短學習目標卡片 -->
+        <div class="card" style="margin-top: 14px; background: rgba(58, 134, 255, 0.08); padding: 10px 16px;">
+          <p style="font-size: 0.68em; line-height: 1.5; color: #f1f5f9;">
+            <strong class="highlight-amber">🎯 本簡報教學目標：</strong>
+            從材料物理本質出發，理解碳化矽（SiC）如何突破傳統矽極限，掌握 800V 電動車關鍵驅動、供應鏈長晶瓶頸，以及全球五大巨頭的競爭與挑戰。
+          </p>
+        </div>
+
+        <div class="source-footer">
+          Source: Yole Group (2024), SRC-03; MDPI Materials (2024), SRC-01
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          各位聽眾好，歡迎來到碳化矽（SiC）功率半導體市場的入門教學。
+          很多初學者談到半導體，直覺想到的都是台積電代工的蘋果 CPU 或輝達 GPU。這些屬於「運算晶片」，如同車輛的大腦。
+          然而，現代世界正經歷大規模的電氣化革命——電動車能跑多遠？充電需要幾十分鐘？伺服器機房耗損多少電力？這些問題的答案取決於「功率半導體」，也就是掌控電能轉換的心臟與肌肉。
+          今天我們的學習目標非常明確：從最底層的材料物理特性出發，逐步探討市場規模、產業鏈挑戰與未來的競局。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 2: 什麼是碳化矽？材料本質與物理特性 -->
+      <!-- ========================================== -->
+      <section data-slide-id="2">
+        <span class="badge">物理本質解構</span>
+        <h2>What Is Silicon Carbide? The Material of Extreme Efficiency</h2>
+        
+        <div class="grid-2">
+          <div class="card">
+            <h3>化學結構與 4H-SiC</h3>
+            <ul>
+              <li><strong>化合物晶體：</strong> 由矽（Si）原子與碳（C）原子以極強共價鍵結合成緊密晶格。</li>
+              <li><strong>主流晶相：</strong> 碳化矽具有超過 200 種多型體，其中 <strong>4H-SiC</strong> 兼具高電子遷移率與對稱性，為功率元件首選。</li>
+              <li><strong>自然界存在：</strong> 天然 SiC 又稱「莫桑石（Moissanite）」，極度稀有（多源於隕石），工業應用皆仰賴人工超高溫合成。</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>寬能隙（Wide Bandgap）意義</h3>
+            <ul>
+              <li><strong>能隙定義（Bandgap, $E_g$）：</strong> 電子從價帶躍遷至導帶參與導電所需的能量門檻。</li>
+              <li><strong>能隙數值對比：</strong> 4H-SiC 能隙達 <strong>3.26 eV</strong>，約為傳統矽（1.12 eV）的 <strong>2.9 倍</strong>。</li>
+              <li><strong>物理意義：</strong> 寬能隙大幅壓制高溫下的熱激發漏電流，使材料本徵耐溫極限突破 <strong>300°C</strong>。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 示意圖：能隙與溫度對照 -->
+        <div class="card" style="margin-top: 14px; padding: 12px 18px;">
+          <div style="display: flex; justify-content: space-around; align-items: center; text-align: center;">
+            <div>
+              <span class="stat-label">傳統矽（Silicon）能隙</span>
+              <div class="stat-number highlight-blue">1.12 eV</div>
+              <span style="font-size: 0.65em; color: var(--text-muted);">常溫易導電，但高溫漏電劇烈</span>
+            </div>
+            <div style="font-size: 1.5em; color: var(--border-card);">➔</div>
+            <div>
+              <span class="stat-label">碳化矽（4H-SiC）能隙</span>
+              <div class="stat-number highlight-cyan">3.26 eV <span style="font-size: 0.5em; color: var(--accent-amber);">(~2.9x)</span></div>
+              <span style="font-size: 0.65em; color: var(--accent-cyan);">能隙寬廣，高溫物理穩定性極佳</span>
+            </div>
+            <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px; text-align: left;">
+              <span class="stat-label">商用元件結溫注意</span>
+              <p style="font-size: 0.65em; margin: 4px 0 0 0; color: #cbd5e1;">
+                <strong>材料本徵理論耐溫：</strong> >300°C<br>
+                <strong>商用元件額定工作結溫：</strong> 普遍標定於 <strong>150°C～175°C</strong>（少數高規格車規模組達 200°C，受限於封裝材料與閘極氧化層長期可靠度）。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="source-footer">
+          Source: MDPI Materials (2024), SRC-01
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          我們來看什麼是碳化矽。SiC 是矽與碳的結合，化學鍵結非常強固。
+          它最根本的物理秘密叫做「寬能隙（Wide Bandgap）」。什麼是能隙？可以用「水庫閘門的高度」來比喻。
+          傳統矽的閘門很低（只有 1.12 eV），外在環境溫度稍微升高，水流就容易漫過閘門造成漏電，因此矽元件通常在 150°C 就會遇到極限。
+          碳化矽把這座防波堤加高到近 3 倍（3.26 eV），高溫下電子極難自行漫出，漏電極低。
+          但請特別注意：雖然碳化矽「材料本徵」理論上可以耐受超過 300°C 的高溫，但實際做成商用晶片晶體管時，外面的塑膠封裝、焊料以及閘極氧化層無法承受 300°C 的長期煎熬，因此目前主流商用元件的額定結溫大多標定在 150°C～175°C。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 3: 為什麼選擇碳化矽？三大核心優勢 -->
+      <!-- ========================================== -->
+      <section data-slide-id="3">
+        <span class="badge">工程優勢剖析</span>
+        <h2>Why SiC Instead of Silicon? The Core Engineering Advantages</h2>
+
+        <div class="grid-3">
+          <!-- 卡片 1 -->
+          <div class="card">
+            <span class="badge badge-blue">優勢 1：耐高壓</span>
+            <h3>高臨界擊穿電場</h3>
+            <div class="stat-number highlight-cyan">3.0 <span style="font-size: 0.45em; color: var(--text-muted);">MV/cm</span></div>
+            <p class="stat-label">傳統矽為 0.3 MV/cm（約 10 倍優勢）</p>
+            <ul style="margin-top: 10px;">
+              <li><strong>工程效益：</strong> 阻擋相同電壓時，耐壓漂移層厚度僅需矽的 <strong>1/10</strong>。</li>
+              <li><strong>損耗改善：</strong> 顯著降低高壓下的導通電阻，於 1200V 等級下顯著降低導通損耗。</li>
+            </ul>
+          </div>
+
+          <!-- 卡片 2 -->
+          <div class="card">
+            <span class="badge badge-blue">優勢 2：散熱快</span>
+            <h3>優異熱導率表現</h3>
+            <div class="stat-number highlight-cyan">4.9 <span style="font-size: 0.45em; color: var(--text-muted);">W/cm·K</span></div>
+            <p class="stat-label">傳統矽為 1.5 W/cm·K（超過 3 倍優勢）</p>
+            <ul style="margin-top: 10px;">
+              <li><strong>工程效益：</strong> 熱導率甚至優於金屬銅，能迅速將晶粒熱量導出。</li>
+              <li><strong>系統效益：</strong> 大幅降低散熱熱阻，使冷卻模組與散熱鰭片顯著輕量微型化。</li>
+            </ul>
+          </div>
+
+          <!-- 卡片 3 -->
+          <div class="card">
+            <span class="badge badge-blue">優勢 3：高頻切換</span>
+            <h3>高飽和電子漂移速度</h3>
+            <div class="stat-number highlight-cyan">2.0×10⁷ <span style="font-size: 0.45em; color: var(--text-muted);">cm/s</span></div>
+            <p class="stat-label">傳統矽為 1.0×10⁷ cm/s（約 2 倍優勢）</p>
+            <ul style="margin-top: 10px;">
+              <li><strong>工程效益：</strong> 開關響應速度極快，無少數載子拖尾電流。</li>
+              <li><strong>系統效益：</strong> 開關頻率推升至 100 kHz+，外部電感、電容等被動元件大幅縮小。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 15px; background: rgba(0, 225, 217, 0.06); padding: 10px 18px;">
+          <p style="font-size: 0.68em; color: #e2e8f0; text-align: center;">
+            <strong class="highlight-cyan">重要工程觀念：</strong> 材料參數不等於整機改善倍數。10 倍臨界電場並非讓整車續航提升 10 倍，而是藉由「漂移層做薄」將高壓電阻壓縮，進而實現系統層級的高能效與微型化。
+          </p>
+        </div>
+
+        <div class="source-footer">
+          Source: MDPI Materials (2024), SRC-01
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          這一頁我們探討為什麼業界要大費周章用碳化矽取代傳統矽。它具備三大材料超能力：
+          第一，耐高壓（臨界擊穿電場是矽的 10 倍）。比喻成水閘門，因為材料強度高了 10 倍，擋住 1200V 的高壓水流時，鋼板厚度只要做 1/10，水流通過時阻力極小。
+          第二，散熱快（熱導率是矽的 3 倍多，比銅還好）。晶片工作產生的熱量可以瞬間排到散熱片，不需要背負笨重的大水箱。
+          第三，切換快（電子速度是矽的 2 倍）。開關速度極快，而且沒有矽元件那種關不斷的拖尾電流。當開關頻率拉高後，周邊配合的濾波電感和電容體積可以大幅縮小。
+          請特別向初學者強調：材料參數是 10 倍，反映在系統上是導通損耗的大幅下降與體積縮小，而非整體系統等比例膨脹 10 倍。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 4: 主要應用在哪裡？800V 電動車與綠能 -->
+      <!-- ========================================== -->
+      <section data-slide-id="4">
+        <span class="badge">下游需求版圖</span>
+        <h2>Where Is SiC Used? 800V EVs & Energy Infrastructure</h2>
+
+        <div class="grid-2">
+          <!-- 左側：車載核心 -->
+          <div class="card">
+            <h3>🚗 車載電氣化（佔總需求 >70%）</h3>
+            <p style="font-size: 0.7em; color: var(--text-muted); margin-bottom: 8px;">推動 SiC 商業化的最大單一主力市場（出處：Yole Group）</p>
+            <ul>
+              <li><strong>主驅牽引逆變器（Traction Inverter）：</strong> 將動力電池直流電轉換為驅動馬達的三相交流電，為最大宗應用。</li>
+              <li><strong>800V 高壓平台主流首選：</strong> 1200V SiC MOSFET 具備極低損耗優勢，成為各大車廠高階純電車款追求極致能效與輕量化的<strong>主流首選技術</strong>（1200V 矽基 IGBT 亦可使用但散熱負擔大）。</li>
+              <li><strong>系統效能模擬推估：</strong> 在標準行車循環（如 WLTP）模擬條件下，SiC 逆變器損耗降低推估有助提升約 <strong>5%～10% 續航里程</strong>，或供車廠權衡縮減電池配置以優化整體成本。</li>
+              <li><strong>車載充電機（OBC）：</strong> 支援雙向充放電，實現更高功率密度。</li>
+            </ul>
+          </div>
+
+          <!-- 右側：能源與 AI 基礎設施 -->
+          <div class="card">
+            <h3>⚡ 綠色能源與 AI 資料中心</h3>
+            <p style="font-size: 0.7em; color: var(--text-muted); margin-bottom: 8px;">多元化的第二成長曲線（出處：TrendForce / Yole）</p>
+            <ul>
+              <li><strong>太陽能光電與儲能逆變器：</strong> 隨著大型電站升級至 1500V 直流電壓架構，SiC 元件能實現極致轉換效率，大幅減輕變壓器與電感重量。</li>
+              <li><strong>AI 伺服器電源供應器（Server PSU）：</strong> AI 運算加速機櫃功耗突破 100kW，推動 3kW 至 12kW 高密度伺服器電源廣泛採用 SiC，以追求 <strong>80 PLUS Titanium（達 96% 轉換效率）</strong> 等高規格能效認證標準。</li>
+              <li><strong>軌道交通與智慧電網：</strong> 高鐵輔助電力系統與智慧微電網固態變壓器。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="source-footer">
+          Source: Yole Group (2024), SRC-03; TrendForce (2024), SRC-02; MDPI (2024), SRC-01
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          碳化矽晶片到底賣給誰？根據 Yole Group 研調，超過七成被電動車買走！
+          為什麼電動車這麼需要它？這牽涉到「800V 高壓電氣架構」。
+          以前電車是 400V，充電功率拉高電流會非常大，電線會發燙。如果把電壓提升到 800V，電流減半，發熱損耗降為四分之一。
+          但在 800V 系統下，需要能耐受 1200V 突波的開關。傳統矽 IGBT 也能做，但發熱巨大、能效低下。而 1200V SiC MOSFET 損耗極小，因此成為各大車廠的主流首選（但並非唯一能用的技術，矽 IGBT 在成本敏感車款中仍有應用）。
+          在行車測試循環模擬中，SiC 能替電車帶來大約 5% 到 10% 的續航提升，這意味著車廠可以在相同續航下少裝一些昂貴電池。
+          此外，AI 伺服器電源也是新興黑馬，AI 機房需要極致省電，推動電源廠追求 80 PLUS Titanium 這種高達 96% 能效的認證標準，帶動 SiC 的採納。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 5: 市場規模有多大？歷史與預測數據 -->
+      <!-- ========================================== -->
+      <section data-slide-id="5">
+        <span class="badge">市場數據與展望</span>
+        <h2>How Big Is the SiC Market? Forecasts and Growth Dynamics</h2>
+
+        <div class="grid-3">
+          <!-- 數據卡 1 -->
+          <div class="card" style="border-top: 4px solid var(--accent-amber);">
+            <span class="badge badge-amber">2023 年口徑對照</span>
+            <h3>2023 規模（預測 vs. 統計）</h3>
+            <div class="stat-number highlight-amber">22.8 ~ 27 <span style="font-size: 0.45em; color: var(--text-muted);">億美元</span></div>
+            <ul style="font-size: 0.65em; line-height: 1.5;">
+              <li><strong>TrendForce 早期預測（2023-03 發布）：</strong> 當年預估 2023 市場達 <strong>22.8 億美元</strong>（預測 YoY 41.4%），定義為 SiC 功率元件。</li>
+              <li><strong>Yole Group 歷史統計（2024-09 報告）：</strong> 回溯統計 2023 實際營收約 <strong>27 億美元</strong>，定義為 Power SiC 元件。</li>
+              <li><strong>口徑說明：</strong> 兩機構統計口徑略有不同，但皆反映 2023 為車載採用爆發年。</li>
+            </ul>
+          </div>
+
+          <!-- 數據卡 2 -->
+          <div class="card" style="border-top: 4px solid var(--accent-blue);">
+            <span class="badge badge-blue">2026 年近期預測</span>
+            <h3>2026 展望（TrendForce 預測）</h3>
+            <div class="stat-number highlight-blue">53.3 <span style="font-size: 0.45em; color: var(--text-muted);">億美元</span></div>
+            <p class="stat-label" style="color: var(--accent-amber); font-weight: 600;">TrendForce 於 2024 年 6 月發布之預測</p>
+            <ul style="font-size: 0.65em; line-height: 1.5; margin-top: 6px;">
+              <li><strong>性質標記：</strong> 此為研調前瞻預測模型，<strong>並非已確認之 2026 年實際市場規模</strong>。</li>
+              <li><strong>市場定義：</strong> 全球碳化矽功率元件（SiC Power Device）營收。</li>
+              <li><strong>驅動因素：</strong> 預期歷經 2024 去庫存後，受 800V 車型普及重啟動能。</li>
+            </ul>
+          </div>
+
+          <!-- 數據卡 3 -->
+          <div class="card" style="border-top: 4px solid var(--accent-cyan);">
+            <span class="badge">2029 年中長期願景</span>
+            <h3>2029 願景（Yole Group 預測）</h3>
+            <div class="stat-number highlight-cyan">98.73 <span style="font-size: 0.45em; color: var(--text-muted);">億美元</span></div>
+            <p class="stat-label">Yole 於 2024 年 9 月發布之預測（CAGR 24%）</p>
+            <ul style="font-size: 0.65em; line-height: 1.5; margin-top: 6px;">
+              <li><strong>複合年均增長率：</strong> 2023 至 2029 年 CAGR 預測達 <strong>24%</strong>。</li>
+              <li><strong>生態系累計投資：</strong> 全球半導體廠承諾建廠與長晶投資高達 <strong>300 億美元</strong>。</li>
+              <li><strong>市場定義：</strong> 全球 Power SiC 元件市場（逼近百億美元）。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 14px; padding: 10px 18px;">
+          <p style="font-size: 0.68em; margin: 0; color: #cbd5e1;">
+            <strong class="highlight-amber">2024 年產業現況說明（Market Context）：</strong> 
+            受歐美部分車廠放緩純電動車推進節奏及工業端庫存去化影響，2024 年市場成長率出現短期減速（Deceleration）；然而長期在各國能效標準與新興 AI 電源帶動下，整體擴張路徑依然清晰。
+          </p>
+        </div>
+
+        <div class="source-footer">
+          Source: TrendForce (2023/2024), SRC-02; Yole Group (2024), SRC-03
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          這一頁我們看市場數據。在學術與專業研調中，最重要的是區分「歷史數據」與「預測模型」。
+          請注意 2023 年的數字：TrendForce 在 2023 年 3 月曾發布新聞預測該年度市場為 22.8 億美元（成長 41.4%），這是當時的預測；而另一家權威機構 Yole Group 於 2024 年回溯統計時，認為 2023 年實際營收約落在 27 億美元。這反映了兩家機構在統計口徑上的些許差異，但都說明了 2023 年的超高速成長。
+          往後看，請特別注意：TrendForce 預估 2026 年達到 53.3 億美元，這是 2024 年發布的預測模型，不能誤當成已經確認的實際結果！Yole 則預測 2029 年達到 98.73 億美元（逼近百億美元），這期間複合年增長率（CAGR）高達 24%。
+          但請不要忘記，2024 年市場經歷了短期的去庫存與純電車銷量增速減緩的逆風，因此半導體產業的擴張不是一條直線，而是伴隨著週期性調整。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 6: 產業鏈全貌與 8 吋升級潮 -->
+      <!-- ========================================== -->
+      <section data-slide-id="6">
+        <span class="badge">製造工藝與經濟學</span>
+        <h2>Understanding the SiC Supply Chain: Bottlenecks & 8-Inch Scaling</h2>
+
+        <!-- 產業鏈四步驟橫向條 -->
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <div class="card" style="flex: 1; padding: 10px; text-align: center; border-color: rgba(255,183,3,0.3);">
+            <div style="font-size: 0.65em; color: var(--accent-amber); font-weight: 700;">步驟 1：長晶（PVT）</div>
+            <div style="font-size: 0.6em; color: #cbd5e1;">2000~2400°C 昇華緩慢生長晶錠</div>
+          </div>
+          <div class="card" style="flex: 1; padding: 10px; text-align: center; border-color: rgba(255,183,3,0.3);">
+            <div style="font-size: 0.65em; color: var(--accent-amber); font-weight: 700;">步驟 2：基板切磨拋</div>
+            <div style="font-size: 0.6em; color: #cbd5e1;">金剛石線切割，40% 切損（Kerf Loss）</div>
+          </div>
+          <div class="card" style="flex: 1; padding: 10px; text-align: center;">
+            <div style="font-size: 0.65em; color: var(--accent-cyan); font-weight: 700;">步驟 3：CVD 磊晶</div>
+            <div style="font-size: 0.6em; color: #cbd5e1;">生長微米級高純度漂移層</div>
+          </div>
+          <div class="card" style="flex: 1; padding: 10px; text-align: center;">
+            <div style="font-size: 0.65em; color: var(--accent-blue); font-weight: 700;">步驟 4：晶圓製造與封裝</div>
+            <div style="font-size: 0.6em; color: #cbd5e1;">離子植入、退火、奈米銀燒結模組</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- 成本結構特性 -->
+          <div class="card">
+            <h3>特殊的成本結構（TrendForce 數據）</h3>
+            <ul>
+              <li><strong>基板佔比最高：</strong> 碳化矽晶圓基板（Substrate）材料成本佔總製造成本約 <strong>45%～50%</strong>（傳統矽基板僅佔 5%～10%）。</li>
+              <li><strong>長晶極難極慢：</strong> PVT 長晶每小時僅生長 <strong>0.1～1 mm</strong>，生長數公分晶錠需耗時一週以上，極易產生結晶微管與位錯缺陷。</li>
+              <li><strong>切片損耗嚴苛：</strong> 莫氏硬度高達 9.5，鋸切造成約 <strong>40% 材料粉末耗損</strong>。</li>
+            </ul>
+          </div>
+
+          <!-- 8 吋晶圓升級轉折點 -->
+          <div class="card">
+            <h3>8 吋（200mm）晶圓升級關鍵</h3>
+            <ul>
+              <li><strong>物理表面積增加：</strong> 由 6 吋（150mm）升級至 8 吋（200mm），表面積增加約 <strong>1.78 倍</strong>。</li>
+              <li><strong>理論晶粒數（Gross Dies）：</strong> 邊緣無效晶粒比例下降，單片理論晶粒產出增加約 <strong>1.8 倍</strong>。</li>
+              <li><strong>重要良率條件：</strong> 實際合格可用良品數（Good Dies）高度取決於工廠良率曲線；在<strong>成熟良率假設下</strong>，每顆晶粒製造成本具備降低 <strong>30%～35%</strong> 的預估潛力。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="source-footer">
+          Source: TrendForce (2024), SRC-04; MDPI Materials (2024), SRC-01
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          了解市場之後，我們來看供應鏈是怎麼生產出碳化矽晶片的。
+          在傳統矽晶片裡，晶圓片本身只佔成本的 5%～10%，貴的是後面的光刻機製程。
+          但碳化矽剛好相反！光是前面的「長晶基板」就佔了整體成本的 45% 到 50%！
+          為什麼？用「切黑金硬吐司」來比喻：碳化矽長晶需在 2000 多度高溫下慢慢長，一週才長出幾公分的單晶棒，硬度接近鑽石。切片時鋸刀磨成粉，將近四成的昂貴材料直接化為灰燼。
+          這也是為什麼全球半導體廠都在搶著升級「8 吋晶圓」。
+          8 吋晶圓面積是 6 吋的 1.78 倍，因為邊緣浪費變少，理論上切出來的晶粒數可以多 1.8 倍。如果長晶與製造良率達到成熟水準，每顆晶片的成本理論上有機會下降 30%～35%。
+          但請提醒聽眾：面積增加不代表合格晶片一定等比例增加，初期如果 8 吋良率很低，切出來全是有缺陷的壞品，反而會造成嚴重虧損。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 7: 競爭格局與產業挑戰 -->
+      <!-- ========================================== -->
+      <section data-slide-id="7">
+        <span class="badge">競爭格局與現實考驗</span>
+        <h2>Key Players and Market Challenges: Oligopoly & Turbulence</h2>
+
+        <div class="grid-2">
+          <!-- 左側：2023 前五大市佔（清晰四欄位拆分） -->
+          <div class="card">
+            <span class="badge badge-blue">2023 歷史市佔排名（TrendForce 2024-06 報告）</span>
+            <h3 style="font-size: 0.85em; margin-bottom: 6px;">全球前五大供應商（合計佔比 91.9%）</h3>
+            <table class="table-compare" style="font-size: 0.6em;">
+              <thead>
+                <tr>
+                  <th style="width: 15%;">2023 排名</th>
+                  <th style="width: 25%;">企業名稱</th>
+                  <th style="width: 20%;">2023 市佔率</th>
+                  <th style="width: 40%;">企業主要競爭優勢</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>第 1 名</strong></td>
+                  <td><strong>ST 意法半導體</strong></td>
+                  <td class="highlight-cyan" style="font-weight: 700;">32.6%</td>
+                  <td>車用先發龍頭、義大利 Catania 8 吋垂直整合廠</td>
+                </tr>
+                <tr>
+                  <td><strong>第 2 名</strong></td>
+                  <td><strong>onsemi 安森美</strong></td>
+                  <td class="highlight-blue">未公布</td>
+                  <td>車用 EliteSiC 放量、併購 GTAT 基板自給率超 50%</td>
+                </tr>
+                <tr>
+                  <td><strong>前五大</strong></td>
+                  <td><strong>Infineon 英飛凌</strong></td>
+                  <td>未公布</td>
+                  <td>工業佔比近半、多元外部基板長約、居林 8 吋新廠</td>
+                </tr>
+                <tr>
+                  <td><strong>前五大</strong></td>
+                  <td><strong>Wolfspeed</strong></td>
+                  <td>未公布</td>
+                  <td>全球最大 SiC 原生基板商、紐約 8 吋先鋒廠</td>
+                </tr>
+                <tr>
+                  <td><strong>前五大</strong></td>
+                  <td><strong>ROHM 羅姆</strong></td>
+                  <td>未公布</td>
+                  <td>德國 SiCrystal 基板自給、專利雙溝槽架構</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="font-size: 0.55em; color: var(--text-muted); margin-top: 6px;">
+              * 註：依 TrendForce 原始發布，前五大合計佔 91.9%；除 ST 32.6% 外，其餘個別精確百分比未單獨揭露，不予臆測。
+            </p>
+          </div>
+
+          <!-- 右側：現實挑戰（精簡版） -->
+          <div class="card">
+            <span class="badge badge-amber">結構性營運考驗</span>
+            <h3 style="font-size: 0.85em; margin-bottom: 6px;">價格侵蝕與高額固定折舊</h3>
+            <ul style="font-size: 0.65em; line-height: 1.55;">
+              <li><strong>中國本土基板擴產與價格侵蝕：</strong> 天岳、天科合達等長晶產能開出，引發 6 吋基板現貨價格腰斬（Price Erosion），低階產能面臨淘汰。</li>
+              <li><strong>8 吋良率爬坡代價沈重：</strong> Wolfspeed 2024 年報（SRC-05）披露 Mohawk Valley 8 吋廠全年度認列高達 <strong>3.944 億美元工廠啟動與閒置費用</strong>。</li>
+              <li><strong>高階車規認證壁壘：</strong> 未經車規認證之低階 6 吋基板供過於求，但 800V 主驅晶片與 8 吋優質基板依然具備極高技術門檻。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="source-footer">
+          Source: TrendForce (2024), SRC-02; Wolfspeed SEC Form 10-K (2024), SRC-05; Yole Group (2024), SRC-03
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          了解了技術與供應鏈，我們來看商業世界由誰在主導。
+          根據 TrendForce 於 2024 年 6 月發布的 2023 年歷史市佔排名：前五大巨頭囊括了全球將近 92% 的市場！
+          意法半導體（ST）靠著早期跟特斯拉的綁定，穩坐 32.6% 的第一把交椅；安森美（onsemi）併購 GTAT 提升材料自給率後，在 2023 年強勢搶下第二名；第三名是歐洲功率老大英飛凌，第四是 Wolfspeed，第五是日本羅姆。請注意，除了 ST 公布了 32.6% 的確切數據外，其餘個別廠商的精確份額 TrendForce 並未單獨拆分，我們秉持學術嚴謹，不自行盲目推算。
+          在右側，我們可以看到產業正面臨兩大考驗：第一是價格侵蝕，低階基板殺成一片紅海；第二是 8 吋建廠的高額代價，Wolfspeed 單年閒置與開辦成本就接近 4 億美元，展示了先進半導體良率爬坡期的沈重虧損壓力。
+        </aside>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SLIDE 8: 未來展望與核心結論 -->
+      <!-- ========================================== -->
+      <section data-slide-id="8">
+        <span class="badge">未來展望與總結</span>
+        <h2>Future Outlook & Key Takeaways: Powering a Sustainable Future</h2>
+
+        <div class="grid-4">
+          <!-- 收穫卡 1 -->
+          <div class="card" style="border-top: 3px solid var(--accent-cyan);">
+            <div style="font-size: 0.65em; color: var(--accent-cyan); font-weight: 700;">1. 物理極致能效</div>
+            <p style="font-size: 0.62em; margin-top: 6px;">
+              寬能隙（3.26 eV）賦予耐高壓、耐高溫與高頻切換三大材料優勢，打破傳統矽的熱與能效天花板。
+            </p>
+          </div>
+
+          <!-- 收穫卡 2 -->
+          <div class="card" style="border-top: 3px solid var(--accent-blue);">
+            <div style="font-size: 0.65em; color: var(--accent-blue); font-weight: 700;">2. 應用逐步擴散</div>
+            <p style="font-size: 0.62em; margin-top: 6px;">
+              800V 架構正從豪華性能電車逐步向主流平價車型拓展；AI 資料中心對 Titanium+ 超高能效認證之追求，開啟新增長點。
+            </p>
+          </div>
+
+          <!-- 收穫卡 3 -->
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div style="font-size: 0.65em; color: var(--accent-amber); font-weight: 700;">3. 良率與成本考驗</div>
+            <p style="font-size: 0.62em; margin-top: 6px;">
+              8 吋晶圓預期的 30%～35% 降本潛力高度依賴良率爬坡；短期內高額固定資產折舊與價格競爭仍考驗廠商體質。
+            </p>
+          </div>
+
+          <!-- 收穫卡 4 -->
+          <div class="card" style="border-top: 3px solid var(--accent-green);">
+            <div style="font-size: 0.65em; color: var(--accent-green); font-weight: 700;">4. 百億美元願景</div>
+            <p style="font-size: 0.62em; margin-top: 6px;">
+              依 Yole 預估，全球 Power SiC 市場有望於 2029 年朝 98.73 億美元邁進（CAGR 24%），作為全社會能源轉型的底層支柱。
+            </p>
+          </div>
+        </div>
+
+        <!-- 總結引言 -->
+        <div class="card" style="margin-top: 20px; background: rgba(58, 134, 255, 0.08); text-align: center; padding: 14px 20px;">
+          <p style="font-size: 0.72em; margin: 0; color: #f1f5f9;">
+            <strong class="highlight-cyan">核心結論：</strong>
+            理解碳化矽（SiC）的本質，就是理解材料科學突破如何跨越長晶製造瓶頸、轉化為現實世界的能源生產力。儘管經歷短期產能與良率調適，SiC 在高能效電氣化領域的長遠價值已成為全球產業共識。
+          </p>
+        </div>
+
+        <div class="source-footer">
+          Source: Yole Group (2024), SRC-03; TrendForce (2024), SRC-04; MDPI (2024), SRC-01
+        </div>
+
+        <aside class="notes">
+          【講者口頭說明稿】
+          最後，我們為今天的碳化矽之旅做個總結。
+          第一，回歸物理本質：碳化矽之所以強大，源於寬能隙帶來的耐高壓、散熱快與高頻開關三大優勢。
+          第二，應用正在擴散：從早期只出現在百萬級豪華電車，到現在逐漸普及到大眾車款與高階 AI 伺服器電源。
+          第三，客觀看待挑戰：大家都在談 8 吋晶圓能降本 30% 到 35%，但這是有條件的——前提是必須突破長晶良率。短期內，巨額建廠折舊與價格戰仍是各家廠商必須克服的關卡。
+          第四，百億美元藍圖：長遠來看，Yole 預測 2029 年市場規模將逼近 100 億美元。
+          學習半導體不只是背誦專有名詞，而是透過碳化矽的歷程，看見人類如何為了解決能源轉換損耗，從材料物理、晶圓製造到全球競合所走過的一整套完整脈絡。感謝大家的聆聽！
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Reveal.js CDN 核心腳本與外掛 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+
+  <script>
+    // 初始化 Reveal.js 簡報引擎
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      transitionSpeed: 'default',
+      width: 1040,
+      height: 700,
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2.0,
+      plugins: [ RevealNotes ]
+    });
+  </script>
+</body>
+</html>

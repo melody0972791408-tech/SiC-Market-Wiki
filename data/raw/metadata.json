@@ -1,0 +1,81 @@
+{
+  "sources": [
+    {
+      "source_id": "SRC-01",
+      "title": "The Overview of Silicon Carbide Technology: Status, Challenges, Key Drivers, and Product Roadmap",
+      "publisher": "MDPI (Materials, Vol. 18, Issue 1, Article 12)",
+      "authors": "Maciej Kamiński, Krystian Król, Norbert Kwietniewski, Marcin Myśliwiec, et al.",
+      "publication_date": "2024-12-24",
+      "original_url": "https://doi.org/10.3390/ma18010012",
+      "retrieved_date": "2026-11-18",
+      "accessible_content": "Full Open-Access Academic Paper",
+      "data_classification": "Technical & Material Fundamentals / Physical Principles",
+      "related_wiki_topics": [
+        "1. SiC 基本概念與技術優勢",
+        "2. SiC 主要應用與市場需求",
+        "4. SiC 供應鏈與主要競爭者"
+      ]
+    },
+    {
+      "source_id": "SRC-02",
+      "title": "ST Maintains Top Spot with 32.6% Market, onsemi Rises to Second Place in 2023 Revenue Ranking for SiC Power Devices, Says TrendForce",
+      "publisher": "TrendForce (集邦科技)",
+      "authors": "TrendForce Research Team",
+      "publication_date": "2024-06-20",
+      "original_url": "https://www.trendforce.com/presscenter/news/20240620-12196.html",
+      "retrieved_date": "2026-11-18",
+      "accessible_content": "Official Public Press Release & Executive Summary",
+      "data_classification": "Historical Market Data (2023) & Near-Term Forecast (2026)",
+      "related_wiki_topics": [
+        "3. 全球 SiC 市場現況與成長趨勢",
+        "4. SiC 供應鏈與主要競爭者"
+      ]
+    },
+    {
+      "source_id": "SRC-03",
+      "title": "Power SiC: a $10B market by 2029 facing short-term turbulence",
+      "publisher": "Yole Group (Yole Intelligence)",
+      "authors": "Yole Group Power Electronics Analysts (Poshun Chiu et al.)",
+      "publication_date": "2024-09-10",
+      "original_url": "https://www.yolegroup.com/press-release/power-sic-a-10b-market-by-2029-facing-short-term-turbulence/",
+      "retrieved_date": "2026-11-18",
+      "accessible_content": "Official Public Executive Analysis & Press Release",
+      "data_classification": "Market Forecast (2023-2029) & Industry Dynamics Analysis",
+      "related_wiki_topics": [
+        "2. SiC 主要應用與市場需求",
+        "3. 全球 SiC 市場現況與成長趨勢",
+        "5. SiC 未來發展機會與挑戰"
+      ]
+    },
+    {
+      "source_id": "SRC-04",
+      "title": "[News] Continuous Breakthroughs in SiC Substrates, Global 8-Inch Fab to Reach 11",
+      "publisher": "TrendForce (集邦科技)",
+      "authors": "TrendForce Industry Analysts",
+      "publication_date": "2024-03-05",
+      "original_url": "https://www.trendforce.com/news/2024/03/05/news-continuous-breakthroughs-in-sic-substrates-global-8-inch-fab-to-reach-11/",
+      "retrieved_date": "2026-11-18",
+      "accessible_content": "Public Industry Intelligence & Fab Tracker Article",
+      "data_classification": "Manufacturing Technology & Supply Chain Roadmap (2024 Roadmap Status)",
+      "related_wiki_topics": [
+        "4. SiC 供應鏈與主要競爭者",
+        "5. SiC 未來發展機會與挑戰"
+      ]
+    },
+    {
+      "source_id": "SRC-05",
+      "title": "Wolfspeed, Inc. Annual Report for the Fiscal Year Ended June 30, 2024 (Form 10-K / ARS)",
+      "publisher": "US Securities and Exchange Commission (SEC) / Wolfspeed, Inc.",
+      "authors": "Wolfspeed Executive Officers & Board of Directors",
+      "publication_date": "2024-08-22",
+      "original_url": "https://www.sec.gov/Archives/edgar/data/895419/000089541924000081/wolfspeed_2024xars.pdf",
+      "retrieved_date": "2026-11-18",
+      "accessible_content": "Statutory Annual Report to Shareholders (ARS) & Form 10-K Public Filing",
+      "data_classification": "Corporate Primary Operational & Financial Filing (Fiscal 2024)",
+      "related_wiki_topics": [
+        "4. SiC 供應鏈與主要競爭者",
+        "5. SiC 未來發展機會與挑戰"
+      ]
+    }
+  ]
+}
